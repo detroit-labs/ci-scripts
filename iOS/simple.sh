@@ -23,9 +23,9 @@ function setup()
 function test_code()
 {
   xctool test \
-		-workspace $WORKSPACE \
-		-scheme $SCHEME \
-		-configuration $CONFIGURATION \
+		-workspace ${WORKSPACE} \
+		-scheme ${SCHEME} \
+		-configuration ${CONFIGURATION} \
 		-reporter plain \
 		-sdk iphonesimulator \
 		PROJECT_TEMP_DIR=$(mktemp -d -t $(SCHEME)) \
