@@ -1,4 +1,4 @@
 ci-scripts
 ==========
 
-Sample scripts for CI
+See iOS/samples for script configuration/usage.
