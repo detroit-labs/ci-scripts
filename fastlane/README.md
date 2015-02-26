@@ -118,7 +118,7 @@ everything is working:
   When running locally, you might get prompted the first time for certain steps
   (i.e. sigh).
 
-  If the deploy works, you can add fastlans as an "Execute shell" build step in
+  If the deploy works, you can add fastlane as an "Execute shell" build step in
   your Jenkins job:
 
   ```bash
