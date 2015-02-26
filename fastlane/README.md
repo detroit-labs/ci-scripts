@@ -16,7 +16,7 @@ small hack day projects or complex client projects.
 
 2. Add fastlane to your Gemfile (e.g. `$ echo "gem \"fastlane\", \"~>0.1\"" >> Gemfile`).
 
-3. Install fastlane (e.g. `bash $ bundle install` )
+3. Install fastlane (e.g. `$ bundle install` )
 
 4. Configure fastlane by running `$ bundle exec fastlane init`.
 Refer to [these instructions](https://github.com/KrauseFx/fastlane/blob/master/GUIDE.md#get-it-up-and-running).
