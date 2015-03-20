@@ -3,8 +3,6 @@ CI Scripts
 
 ## Sample Build Scripts 
 
- - [Simple iOS build script](iOS/simple.sh)
- - [Extended iOS build script](iOS/extended.sh)
  
 ## Utility Scripts
 
@@ -63,7 +61,7 @@ Compiles build notes into a text file, including CHANGES_SINCE_SUCCESS.
 _File: [common-distribute.sh](common-distribute.sh)_
 
 #####upload_build
-Uploads *.ipa to Crashlytics Bea w/ notes; notifies test groups.
+Uploads *.ipa to Crashlytics Beta w/ notes; notifies test groups.
 
 _File: [common-distribute.sh](common-distribute.sh)_
 
