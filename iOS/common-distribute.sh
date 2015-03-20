@@ -12,7 +12,7 @@ function generate_build_notes() {
 
 function upload_build()
 {
-  ./Pods/CrashlyticsFramework/Crashlytics.framework/submit \
+  ${CRASHLYTICS_SUBMIT_PATH} \
     $CRASHLYTICS_API_KEY $CRASHLYTICS_BUILD_SECRET \
     -ipaPath build/$IPA \
     -notesPath build/notes.txt \
