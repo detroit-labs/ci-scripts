@@ -1,0 +1,62 @@
+# Customise this file, documentation can be found here:
+# https://github.com/krausefx/fastlane#customise-the-fastfile
+#
+# Environment Variables (set in Jenkins config or local environment):
+#   DELIVER_USER (Apple ID Email)         # if not set locally, you will be prompted
+#   DELIVER_PASSWORD (Apple ID Password)  # if not set locally, you will be prompted
+#   CRASHLYTICS_API_KEY
+#   CRASHLYTICS_BUILD_SECRET
+#   HIPCHAT_API_TOKEN
+#   HIPCHAT_API_VERSION
+#
+
+before_all do
+  # Install dependencies
+  cocoapods
+
+  # Select the desired Xcode version
+  sh "safe-xcode-select /Applications/Xcode6.1.app"
+end
+
+lane :test do
+  # Run tests
+  xctool :test
+
+  # Generate HTML code coverage
+  sh "mkdir code-coverage && gcovr --html --html-details -o code-coverage/code-coverage-report.html"
+end
+
+lane :inhouse do
+  # Fetch provisioning profile
+  sigh :skip_install
+
+  # Build, export & sign the archive
+  ipa({
+    workspace: "MyApp.xcworkspace", # Replace w/ your workspace name
+    scheme: "MyApp"                 # Replace w/ your scheme name
+  })
+
+  # Deploy build to Beta
+  crashlytics({
+    crashlytics_path: "./Crashlytics.framework",
+    api_token: ENV["CRASHLYTICS_API_KEY"],
+    build_secret: ENV["CRASHLYTICS_BUILD_SECRET"],
+    # groups: "myapp-testers" # Replace with the alias of your test group
+  })
+
+  # Notify the HipChat room that the build was released
+  hipchat({
+    message: "App successfully released to Beta!",
+    channel: "MyApp", # Replace with HipChat room name for your project
+    success: true
+  })
+end
+
+after_all do |lane|
+  # This block is called, only if the executed lane was successful
+end
+
+
+error do |lane, exception|
+  # This block is called, only if something went wrong.
+end
